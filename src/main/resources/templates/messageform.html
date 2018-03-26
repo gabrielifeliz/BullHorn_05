@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head th:replace="base :: headstuff"></head>
+<body>
+<nav th:replace="base :: navbar"></nav>
+<div class="container-fluid">
+    <form method="POST" action="/add" th:object="${message}"
+        enctype="multipart/form-data"> 
+        
+        <input type="hidden" th:field="*{id}" />
+        
+        <h1>Add a Message</h1><br/>
+
+        <h4><b>Date Posted:</b></h4>
+        <input type="text" th:field="*{postedDate}" placeholder="mm/dd/yyyy"/>
+        <span th:if="${#fields.hasErrors('postedDate')}"
+              th:errors="*{postedDate}"></span><br />
+
+        <h4><b>Content:</b></h4>
+        <textarea rows="3" th:field="*{content}"></textarea>
+        <span th:if="${#fields.hasErrors('content')}"
+              th:errors="*{description}"></span><br />
+
+		<h4><b>File Upload:</b></h4>
+        <input type="file" name="file" /><br/><br/>
+
+   <!-- <h4><b>Sent By:</b></h4>
+        <input type="text" th:field="*{sentBy}" />
+        <span th:if="${#fields.hasErrors('sentBy')}"
+              th:errors="*{sentBy}"></span>
+        <br /><br /> -->
+        <button type="submit" class="btn btn-default btn-lg">Submit</button>
+    </form>
+</div>
+<nav th:replace="base :: footer"></nav>
+<th:block th:replace="base :: jslinks"></th:block>
+</body>
+</html>

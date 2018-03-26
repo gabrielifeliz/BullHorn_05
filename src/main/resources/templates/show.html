@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head th:replace="base :: headstuff"></head>
+<body>
+    <nav th:replace="base :: navbar"></nav>
+    <div class="container-fluid">
+        <h1>Message Detail</h1><br/>
+
+        <b>Id:</b> <span th:text="${message.id}" ></span><br /><br/>
+
+        <b>Author:</b> <span th:text="${message.sentBy}" ></span><br /><br />
+
+        <b>Date:</b> <span th:text="${message.postedDate}" ></span><br /><br/>
+
+        <b>Message:</b> <p th:text="${message.content}" ></p><br />
+
+		<b>Photo:</b>
+		<div th:if="${message.image} != null">
+	          <img th:src="${message.image}" />
+	    </div><br /><br />
+		
+        <p><a class="btn btn-primary btn-lg"
+          th:href="@{/update/{id}(id=${message.id})}"
+          role="button">Update this message</a></p><br />
+
+        <p><a class="btn btn-primary btn-lg"
+           th:href="@{/delete/{id}(id=${message.id})}"
+           role="button">Delete this message</a></p><br />
+
+        <p><a class="btn btn-primary btn-lg"
+              href="/" role="button">
+            Show All Messages</a></p><br />
+    </div>
+    <nav th:replace="base :: footer"></nav>
+    <th:block th:replace="base :: jslinks"></th:block>
+</body>
+</html>
